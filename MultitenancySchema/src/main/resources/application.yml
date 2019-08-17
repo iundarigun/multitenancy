@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/devcave_multitenancy
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        connection:
+          url: ${spring.datasource.url}
+          username: ${spring.datasource.username}
+          password: ${spring.datasource.password}
+        multiTenancy: SCHEMA
+        multi_tenant_connection_provider: br.com.devcave.multitenancy.tenant.SchemaMultiTenantConnectionProvider
+        tenant_identifier_resolver: br.com.devcave.multitenancy.tenant.SchemaCurrentTenantIdentifierResolver
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+

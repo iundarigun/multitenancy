@@ -1,0 +1,25 @@
+server:
+  port: 9090
+spring:
+  datasources:
+    -
+      name: mysql
+      url: jdbc:mysql://localhost:3306/devcave_multitenancy?useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    -
+      name: postgres
+      url: jdbc:postgresql://localhost:5432/devcave_multitenancy
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        temp:
+          use_jdbc_metadata_defaults: false
